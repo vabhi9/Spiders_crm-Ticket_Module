@@ -19,5 +19,5 @@
         $sql = "INSERT INTO `users` (`full_name`, `username`, `password`, `role`, `timestamps`) VALUES ('$name', '$username', '$password','$role', NOW())";
         $conn->query($sql);
     }
-    echo "Register"
+    echo "<script>alert('Register successfully')</script>";
 ?>

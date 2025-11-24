@@ -5,12 +5,18 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+ul {
+    list-style: none;
+}
+
 body {
     height: 100vh;
     background: #f3f6fa;
 }
 
-div {
+.loginForm,
+.registerForm,
+.createTicketForm {
     width: 350px;
     padding: 30px 35px;
     background: #ffffff;
@@ -26,7 +32,7 @@ div {
     z-index: 10;
 }
 
-.registerForm{
+.registerForm {
     display: none;
 }
 
@@ -65,7 +71,9 @@ h4 {
     cursor: pointer;
 }
 
-button {
+.loginButton,
+.issueticket,
+.registerUserBtn {
     width: 100%;
     padding: 12px;
     background: #1E40AF;
@@ -110,4 +118,153 @@ option {
     padding: 10px;
     background: #fff;
     color: #333;
+}
+
+.adminDash {
+    display: flex;
+    height: 100vh;
+    background: #f4f7fb;
+    font-family: "Poppins", sans-serif;
+}
+
+/* LEFT SIDEBAR */
+.sect-1 {
+    width: 250px;
+    background: #1E40AF;
+    color: white;
+    padding: 30px 20px 20px 20px;
+    margin: 20px;
+    border-radius: 12px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.12);
+}
+
+.sect-1 h1 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: white;
+    text-align: center;
+}
+
+.sect-1 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sect-1 ul li {
+    padding: 12px 10px;
+    margin: 15px 3px 15px 3px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.sect-1 ul li:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* RIGHT MAIN AREA */
+.sect-2 {
+    flex: 1;
+    margin: 20px 20px 20px 0;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.sect-2 .top-box {
+    width: 100%;
+    background: rgb(103, 50, 165);
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    padding: 20px 0 20px 0;
+    font-size: 26px;
+}
+
+
+.sect-2 .bottom-box {
+    width: 100%;
+    height: auto;
+    background: rgb(23, 130, 64);
+    border-radius: 12px;
+    margin-top: 25px;
+    padding: 10px;
+}
+
+.ticketStructure {
+    /* height: 120px;
+    width: 100%;
+    background: #333;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 10px 0; */
+    height: 120px;
+    width: 100%;
+    background: #333;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 11px 0 10px 0;
+}
+
+#ticketContainer{
+    /* margin: 10px 0 10px 0; */
+    display: block;
+}
+
+#userConatiner {
+    display: none;
+}
+
+.activeMenu {
+    color: red;
+}
+
+.userStructure {
+    height: 120px;
+    width: 100%;
+    background: #333;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.createTicketButton {
+    height: auto;
+    width: 100px;
+    background: #1894b085;
+    /* position: fixed; */
+}
+
+.crossBtn {
+    position: absolute;
+    text-align: right;
+    color: #1E40AF;
+}
+
+.createTicketForm {
+    display: none;
+}
+
+.statusContainer{
+    position: absolute;
+    display: none;
+}
+
+.statusContainerToggle{
+    /* position: absolute; */
+    display: block;
+}
+
+.statusBtn{
+    color: #f3f6fa;
+    /* position: absolute; */
 }

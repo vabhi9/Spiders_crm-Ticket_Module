@@ -9,6 +9,17 @@
             <option value="user">User</option>
         </select>
         <h4 id="signin">Already have an Accorunt?</h4>
-        <button>Register</button>
+        <button class='registerUserBtn'>Register</button>
     </form>
+    <script>
+        const loginForm = document.querySelector(".loginForm");
+        const registerForm = document.querySelector(".registerForm");
+        
+        const loginBtn = document.querySelector("#signin");
+
+        loginBtn.addEventListener("click", () => {
+            loginForm.style.display = "block";
+            registerForm.style.display = "none";
+        });
+    </script>
 </div>
