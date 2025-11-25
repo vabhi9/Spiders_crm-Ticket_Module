@@ -39,15 +39,15 @@ while ($row = $result->fetch_assoc()) {
                 createTicketForm.style.display = 'block';
 
                 const card = e.target.closest(".userStructure");
-                username = e.target.closest(".userStructure").querySelector('.username').textContent;
+                username = card.querySelector('.username').textContent;
                 fullname = card.querySelector('.fullname').textContent;
 
                 console.log(username, fullname);
 
                 const selectedUser = document.querySelector('.selectedUser');
-                const selectedUse = document.getElementsByName('selectedUser');
+                // const selectedUse = document.getElementsByName('selectedUser');
                 console.log('selected User is:',selectedUser);
-                console.log('selected Use is:',selectedUse);
+                // console.log('selected Use is:',selectedUse);
                 selectedUser.value = username;
             });
         });

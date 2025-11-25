@@ -2,7 +2,7 @@
     include('../../connectionDB.php');
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    
+
         $name = $_POST['fullname'];
         $username = $_POST['username'];
         $password = $_POST['password'];

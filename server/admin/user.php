@@ -5,6 +5,7 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
         $ticketname = $_POST['ticketname'];
+        
         $description = $_POST['description'];
         $selectedUser = $_POST['selectedUser'];
         $fullname = $_SESSION['fullname'];
