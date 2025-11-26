@@ -10,7 +10,7 @@ while ($row = $result->fetch_assoc()) {
         <p>Username:</p>
         <p class='username'>{$row['username']}</p>
         <p class='fullname'>Full Name: {$row['full_name']}</p>
-        <p>You Joined at: {$row['timestamps']}</p>
+        <p>Joined at: {$row['timestamps']}</p>
         <p>as : {$row['role']}</p>
         <button class='createTicketButton'>Create Ticket</button>
     </div>";

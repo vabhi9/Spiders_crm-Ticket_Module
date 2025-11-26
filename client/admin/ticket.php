@@ -23,17 +23,18 @@ if ($result->num_rows > 0) {
 
             <p class='statusBtn' data-id={$row['S_No']}>Status:<p>
             <input type='text' readonly class='currentStateOfStatus' name='status' value='{$row['status']}'>
-            <p class='editBtn' data-id='{$row['S_No']}'>Edit</p>
-            <p class='saveBtn' style='display:none' data-id='{$row['S_No']}'>Save</p>
 
-            <div class='statusContainer'>
                 <select name='status' class='statusSelect'>
                     <option value='pending'>Pending</option>
                     <option value='incomplete'>Incomplete</option>
                     <option value='completed'>Completed</option>
                     <option value='onhold'>On Hold</option>
                 </select>
-            </div>
+
+
+            <p class='editBtn' data-id='{$row['S_No']}'>Edit</p>
+            <p class='saveBtn' style='display:none' data-id='{$row['S_No']}'>Save</p>
+
         </form>
         </div>";
         }
@@ -43,117 +44,30 @@ if ($result->num_rows > 0) {
 }
 ?>
 
-<!-- <script>
-    const statusBtns = document.querySelectorAll('.statusBtn');
-    const statusContainer = document.querySelectorAll('.statusContainer');
-    const status = document.getElementsByName('status');
-    const inputField = document.querySelector('.currentStateOfStatus');
-    const editBtns = document.querySelectorAll('.editBtn')
-    const saveBtns = document.querySelectorAll('.saveBtn')
-    window.activeInputField = inputField;
-    let currentStatusId;
-
-    // statusBtns.forEach(statusBtn => { 
-    //     statusBtn.addEventListener('click', (e)=>{
-        
-    //     const card = e.target.closest('.ticketStructure');
-    //     const container = card.querySelector('.statusContainer');
-    //     const inputField = card.querySelector('.currentStateOfStatus');
-    //     currentStatusId = e.target.dataset.id;
-    //     console.log('currentStatusId', currentStatusId)
-    //     window.activeInputField = inputField; 
-    //     window.activeCard = card;
-
-    //     container.classList.toggle('statusContainerToggle');
-    //     });
-    // });
-    
-    // const statusSelects = document.querySelectorAll('.statusSelect');
-    // console.log('status select',statusSelects);
-    
-    // statusSelects.forEach(select => {
-    //     select.addEventListener('change', (e) => {
-    //         const newStatus = e.target.value;
-    //         // currentStateOfStatus.value = newStatus;
-    //         if (window.activeInputField) {
-    //             window.activeInputField.value = newStatus;
-    //         }
-    //         window.location.href = `./updateticketstatus.php?status=${newStatus}&id=${currentStatusId}`;
-    //         alert('Status Changed Successfully');
-    //     });
-    // });
-
-    editBtns.forEach(editBtn => {
-        editBtn.addEventListener('click', (e)=>{
-            const card = e.target.closest('.ticketStructure');
-            // const inputs = card.querySelectorAll('input');
-            const inputs = card.querySelectorAll('input[name="ticketname"], input[name="assignedTo"]');
-
-            inputs.forEach(inp => inp.removeAttribute('readonly'));
-
-            e.target.style.display = 'none';
-            card.querySelector('.saveBtn').style.display = 'block';
-        })
-    });
-
-    saveBtns.forEach(saveBtn => {
-    saveBtn.addEventListener('click', (e) => {
-        const ticketId = e.target.dataset.id;
-        const card = e.target.closest('.ticketStructure');
-        const form = card.querySelector('form');
-
-        const formData = new FormData(form);
-        formData.append("id", ticketId);
-
-        // Send update request
-        fetch('../../server/admin/updateTicket.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(res => res.text())
-        .then(data => {
-            alert("Ticket Updated Successfully!");
-
-            // Lock them again
-            card.querySelectorAll('input').forEach(inp => inp.setAttribute('readonly', true));
-
-            // Toggle buttons
-            card.querySelector('.saveBtn').style.display = 'none';
-            card.querySelector('.editBtn').style.display = 'block';
-            });
-        });
-    });
-</script> -->
-
 <script>
     const editBtns = document.querySelectorAll('.editBtn');
-const saveBtns = document.querySelectorAll('.saveBtn');
+    const saveBtns = document.querySelectorAll('.saveBtn');
 
-editBtns.forEach(editBtn => {
-    editBtn.addEventListener('click', (e) => {
-        const card = e.target.closest('.ticketStructure');
+    editBtns.forEach(editBtn => {
+        editBtn.addEventListener('click', (e) => {
+            const card = e.target.closest('.ticketStructure');
 
         // Input fields to make editable
-        const editableInputs = card.querySelectorAll(
-            'input[name="ticketname"], input[name="assignedTo"]'
-        );
+            const editableInputs = card.querySelectorAll(
+                'input[name="ticketname"], input[name="assignedTo"]'
+            );
 
-        editableInputs.forEach(inp => inp.removeAttribute('readonly'));
+            editableInputs.forEach(inp => inp.removeAttribute('readonly'));
 
-        // --- STATUS HANDLING (using existing classes) ---
-        const statusInput = card.querySelector('.currentStateOfStatus');
-        const statusSelect = card.querySelector('.statusSelect');
-        const statusContainer = card.querySelector('.statusContainer');
+            const statusInput = card.querySelector('.currentStateOfStatus');
+            const statusSelect = card.querySelector('.statusSelect');
 
-        // Hide old input, show dropdown inside same container
-        statusInput.style.display = 'none';
-        statusContainer.classList.add('statusContainerToggle'); 
-        statusSelect.style.display = 'block';
-        statusSelect.value = statusInput.value;
+            statusInput.style.display = 'none';
+            statusSelect.style.display = 'block';
+            statusSelect.value = statusInput.value;
 
-        // Show Save button
-        editBtn.style.display = 'none';
-        card.querySelector('.saveBtn').style.display = 'block';
+            editBtn.style.display = 'none';
+            card.querySelector('.saveBtn').style.display = 'block';
     });
 });
 

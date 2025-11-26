@@ -25,31 +25,7 @@ session_start();
                 <div id="ticketContainer">
                     <?php include('ticket.php')?>
                 </div>
-                <div id="userConatiner">
-                    <?php include('usermanagement.php')?>
-                </div>
         </div>
     </div>
-    <script>
-        const userManagement = document.querySelector("#userManagenent");
-        const currentTicket = document.querySelector("#currentTicket");
-
-        const ticket = document.querySelector("#ticketContainer");
-        const users = document.querySelector("#userConatiner");
-
-        userManagement.addEventListener("click", () => {
-            ticket.style.display = "none";
-            users.style.display = "block";
-            userManagement.classList.add('activeMenu');
-            currentTicket.classList.remove("activeMenu");
-        });
-
-        currentTicket.addEventListener("click", () => {
-            ticket.style.display = "block";
-            users.style.display = "none";
-            currentTicket.classList.add("activeMenu");
-            userManagement.classList.remove("activeMenu");
-        });
-    </script>
 </body>
 </html>
