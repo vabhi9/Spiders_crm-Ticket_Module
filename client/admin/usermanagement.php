@@ -19,13 +19,14 @@ while ($row = $result->fetch_assoc()) {
 
 ?>
 <div  class='createTicketForm'>
-    <p class='crossBtn'>X</p>
+    <p class='crossBtn'>❌</p>
     <h1>Create Ticket</h1>
-    <form action='/ticket/server/admin/user.php' method='POST'>
-        <!-- <p class='selectedUser'>Hii</p> -->
+    <form action='/ticket/server/admin/user.php' method='POST' enctype="multipart/form-data">
         <input type='text' name='selectedUser' value='' class='selectedUser' readonly>
         <input type='text' name='ticketname'  placeholder='Enter Ticket Name'>
         <input type='text' name='description'  placeholder='Enter Description'>
+        <label>Select File:</label>
+        <input type="file" name="uploadedfile">
         <button type='submit' class='issueticket'>Issue Ticket</button>
     </form>
     <script>

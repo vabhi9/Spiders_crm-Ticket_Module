@@ -1,52 +1,78 @@
 <?php
 include('../../connectionDB.php');
-$sql = "SELECT S_No, ticket_name, created_at, assigned_to, assigned_at, status FROM ticket WHERE created_by = '{$_SESSION['fullname']}'";
+$sql = "SELECT S_No, ticket_name, description, created_at, assigned_to, created_by, assigned_at, status FROM ticket WHERE created_by = '{$_SESSION['fullname']}'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        echo "
-        <div class='ticketStructure'>
-        <form>
-            <p>Ticket Name:</p>
-            <br>
-            <input value='{$row['ticket_name']}' name='ticketname' readonly>
+        echo "<div class='ticketStructure'>
+    <!-- Row 1 -->
+    <div class='field'>
+        <label>Ticket Name</label>
+        <input name='ticketname' value='{$row['ticket_name']}' readonly>
+    </div>
 
-            <p>Assigned by:</p>
-            <input value='{$_SESSION['fullname']}' name='adminField' readonly>
+    <div class='field'>
+        <label>Status</label>
+        <input class='currentStateOfStatus' readonly value={$row['status']}>
+        <select class='statusSelect'>
+            <option value='pending'>Pending</option>
+            <option value='incomplete'>Incomplete</option>
+            <option value='completed'>Completed</option>
+            <option value='onhold'>On Hold</option>
+        </select>
+    </div>
 
-            <p>Created At</p>
-            <input value='{$row['created_at']}' name='createdAt' readonly>
+    <div class='field'>
+        <label>Assigned To</label>
+        <input name='assignedTo' value={$row['assigned_to']} readonly>
+    </div>
 
-            <p>Assigned To: </p>
-            <input value='{$row['assigned_to']}' name='assignedTo' readonly>
+    <!-- Row 2 -->
+    <div class='field'>
+        <label>Created At</label>
+        <input value={$row['created_at']} readonly>
+    </div>
 
-            <p class='statusBtn' data-id={$row['S_No']}>Status:<p>
-            <input type='text' readonly class='currentStateOfStatus' name='status' value='{$row['status']}'>
+    <div class='field'>
+        <label>Assigned At</label>
+        <input value={$row['assigned_at']} readonly>
+    </div>
 
-                <select name='status' class='statusSelect'>
-                    <option value='pending'>Pending</option>
-                    <option value='incomplete'>Incomplete</option>
-                    <option value='completed'>Completed</option>
-                    <option value='onhold'>On Hold</option>
-                </select>
+    <div class='field'>
+        <label>Ticket Number</label>
+        <input value={$row['S_No']} readonly>
+    </div>
 
+    <!-- Row 3 -->
+    <div class='field full-width'>
+        <label>Created By</label>
+        <input name='role' value={$row['created_by']} readonly>
+    </div>
 
-            <p class='editBtn' data-id='{$row['S_No']}'>Edit</p>
-            <p class='saveBtn' style='display:none' data-id='{$row['S_No']}'>Save</p>
+    <!-- Row 4 -->
+    <div class='field full-width'>
+        <label>Description</label>
+        <textarea readonly>{$row['description']}></textarea>
+    </div>
 
-        </form>
-        </div>";
-        }
-        // <a href='editTicket.php?id={$row['S_No']}'>Edit</a>
+    <div class='actionBtns'>
+        <p class='editBtn' data-id={$row['S_No']}>Edit</p>
+        <p class='deleteBtn' data-id={$row['S_No']}>Delete</p>
+        <p class='saveBtn' style='display:none' data-id={$row['S_No']}>Save</p>
+    </div>
+</div> ";
+    }
 }else{
-    echo "<script>alert('An issue occurring while Fetching the Data')</script>";
+    echo "<script>alert('An issue occurring while Fetching the Data');</script>";
 }
 ?>
+
 
 <script>
     const editBtns = document.querySelectorAll('.editBtn');
     const saveBtns = document.querySelectorAll('.saveBtn');
+    const deleteBtns = document.querySelectorAll('.deleteBtn');
 
     editBtns.forEach(editBtn => {
         editBtn.addEventListener('click', (e) => {
@@ -76,14 +102,14 @@ saveBtns.forEach(saveBtn => {
     saveBtn.addEventListener('click', (e) => {
         const ticketId = e.target.dataset.id;
         const card = e.target.closest('.ticketStructure');
-        const form = card.querySelector('form');
+        // const form = card.querySelector('Form');
 
         // Read updated values
-        const name = form.querySelector('input[name="ticketname"]').value;
-        const assignedTo = form.querySelector('input[name="assignedTo"]').value;
+        const name = card.querySelector('input[name="ticketname"]').value;
+        const assignedTo = card.querySelector('input[name="assignedTo"]').value;
         const updatedStatus = card.querySelector('.statusSelect').value;
 
-        const formData = new FormData(form);
+        const formData = new FormData();
         formData.append("id", ticketId);
         formData.append("status", updatedStatus);
 
@@ -111,5 +137,38 @@ saveBtns.forEach(saveBtn => {
         });
     });
 });
+
+deleteBtns.forEach(deleteBtn => {
+    deleteBtn.addEventListener('click', (e) => {
+        const ticketId = e.target.dataset.id;
+        const card = e.target.closest('.ticketStructure');
+
+        if (!confirm("Are you sure you want to delete this ticket?")) {
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("id", ticketId);
+
+        fetch('../../server/admin/deleteTicket.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.text())
+        .then(data => {
+            alert("Ticket Deleted Successfully!");
+
+            // Remove card smoothly
+            card.style.transition = "0.3s ease";
+            card.style.opacity = "0";
+            card.style.transform = "scale(0.95)";
+
+            setTimeout(() => {
+                card.remove();
+            }, 300);
+        });
+    });
+});
+
 
 </script>

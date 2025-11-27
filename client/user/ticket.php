@@ -1,6 +1,6 @@
 <?php
 include('../../connectionDB.php');
-$sql = "SELECT S_No, ticket_name, created_by, created_at, status, assigned_at FROM ticket WHERE assigned_to = '{$_SESSION['username']}'";
+$sql = "SELECT S_No, ticket_name, created_by, created_at, status, assigned_at, uploaded_files FROM ticket WHERE assigned_to = '{$_SESSION['username']}'";
 $result = $conn->query($sql);
 // echo "<script>alert('{$}')</script>"
 
@@ -21,6 +21,9 @@ if ($result->num_rows > 0) {
 
             <p>Assigned To: </p>
             <input value='{$_SESSION['fullname']}' name='assignedTo' readonly>
+
+            <label>Download File</lable>
+            <a href='../../server/admin/download.php?file={$row['uploaded_files']}' class='downloadLink'>Download File</a>
 
             <p class='statusBtn' data-id={$row['S_No']}>Status:<p>
             <input type='text' readonly class='currentStateOfStatus' name='status' value='{$row['status']}'>

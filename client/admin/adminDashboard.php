@@ -17,10 +17,12 @@ session_start();
             <ul>
                 <li id="currentTicket" class="activeMenu">Ticket Creation</li>
                 <li id="userManagenent">User management</li>
+                <li id="logoutBtn">Logout</li>
             </ul>
         </div>
 
         <div class="sect-2">
+            <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
             <div class="top-box"> Hii <?php echo $_SESSION["fullname"]?></div>
             <div class="bottom-box">
                 <div id="ticketContainer">
@@ -30,10 +32,12 @@ session_start();
                     <?php include('usermanagement.php')?>
                 </div>
         </div>
+        <div id="overlay" onclick="closeMenu()"></div>
     </div>
     <script>
         const userManagement = document.querySelector("#userManagenent");
         const currentTicket = document.querySelector("#currentTicket");
+        const logoutBtn = document.querySelector("#logoutBtn");
 
         const ticket = document.querySelector("#ticketContainer");
         const users = document.querySelector("#userConatiner");
@@ -51,6 +55,24 @@ session_start();
             currentTicket.classList.add("activeMenu");
             userManagement.classList.remove("activeMenu");
         });
+
+        logoutBtn.addEventListener('click', () => {
+            window.location.href = '../../server/admin/logout.php';
+        });
+
+function toggleMenu() {
+    const menu = document.querySelector('.sect-1');
+    const overlay = document.getElementById('overlay');
+
+    menu.classList.toggle('activeMenuSlide');
+    overlay.classList.toggle('show');
+}
+
+function closeMenu() {
+    document.querySelector('.sect-1').classList.remove('activeMenuSlide');
+    document.getElementById('overlay').classList.remove('show');
+}
+
     </script>
 </body>
 </html>

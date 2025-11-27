@@ -22,8 +22,6 @@ body {
     background: #ffffff;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-
-    /* Centering without flex/grid */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -120,7 +118,8 @@ option {
     color: #333;
 }
 
-.adminDash, .userDash {
+.adminDash,
+.userDash {
     display: flex;
     height: 100vh;
     width: 100%;
@@ -149,7 +148,8 @@ option {
     margin-bottom: 18px;
     font-size: 26px;
     font-weight: 700;
-    color: #F5AD18; /* Yellow */
+    color: #F5AD18;
+    /* Yellow */
     text-align: center;
     letter-spacing: 1px;
 }
@@ -230,7 +230,7 @@ option {
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.04);
 }
 
-.ticketStructure {
+.ticketStructur {
     width: fit-content;
     margin: 18px 0;
     border-radius: 14px;
@@ -242,7 +242,7 @@ option {
 }
 
 
-.ticketStructure:hover {
+.ticketStructur:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
 }
@@ -252,64 +252,6 @@ option {
     padding: 24px 26px;
     width: 360px;
     position: relative;
-}
-
-.ticketStructure p {
-    margin: 8px 0 6px;
-    font-weight: 600;
-    font-size: 14px;
-    color: #4C3575;
-    /* Purple label */
-}
-
-.ticketStructure input {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1.6px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 14px;
-    outline: none;
-    font-size: 14px;
-    transition: border 0.2s ease, background 0.25s ease;
-}
-
-.ticketStructure input:focus {
-    border-color: #4C3575;
-    background: #faf7ff;
-}
-
-.editBtn,
-.saveBtn {
-    cursor: pointer;
-    display: inline-block;
-    margin-top: 12px;
-    padding: 8px 16px;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 14px;
-    transition: 0.2s ease;
-    width: fit-content;
-}
-
-.editBtn {
-    background: #4C3575;
-    color: white;
-    box-shadow: 0 4px 8px rgba(76, 53, 117, 0.25);
-}
-
-.editBtn:hover {
-    background: #3b2a5e;
-    transform: translateY(-2px);
-}
-
-.saveBtn {
-    background: #F5AD18;
-    color: #4C3575;
-    box-shadow: 0 4px 8px rgba(245, 173, 24, 0.3);
-    display: none;
-    position: absolute;
-    bottom: 20px;
-    right: 26px;
 }
 
 .saveBtn:hover {
@@ -339,7 +281,7 @@ option {
     display: block;
 }
 
-.statusSelect {
+.statusSelec {
     width: 75%;
     padding: 10px 12px;
     border-radius: 8px;
@@ -355,36 +297,338 @@ option {
     display: none;
 }
 
-.userStructure {
-    width: fit-content;
+.userStructur {
+    width: 100%;
     padding: 20px 25px;
     border-radius: 20px;
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 8px;
     position: relative;
     overflow: hidden;
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
     transition: all 0.35s ease-in-out;
-    cursor: pointer;
 }
 
+.userStructure {
+    width: 80%;
+    padding: 20px 25px;
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 25px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: 0.3s ease;
+    padding-left: 30px;
+}
+
+/* Text inside */
+.userStructure p {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Full name spans both columns */
+.fullname {
+    grid-column: span 2;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+/* Create Ticket Button */
 .createTicketButton {
+    grid-column: span 2;
+    margin-top: 10px;
+
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: none;
+
+    background: #0F497F;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.25s ease;
+}
+
+.createTicketButton:hover {
+    background: #012C4F;
+}
+
+.createTicketButton:hover {
+    background: #012C4F;
+}
+
+
+.createTicketButton {
+    color: white;
     height: 40px;
     width: 100px;
-    background: #1894b085;
+    background: #4C3575;
     border-radius: 10px;
+    cursor: pointer;
     /* position: fixed; */
 }
 
 .crossBtn {
     position: absolute;
-    text-align: right;
-    color: #1E40AF;
+    padding: 1px 8px 0px 0px;
+    top: 12px;
+    right: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #333;
+    user-select: none;
+    transition: 0.2s;
 }
 
 .createTicketForm {
     display: none;
+}
+
+
+
+/* New CSS */
+.ticketStructure {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: 0.25s ease;
+}
+
+.ticketStructure:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.12);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.field label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #0F497F;
+    margin-bottom: 4px;
+}
+
+.field input,
+.field textarea,
+.field select {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #dbe3f1;
+    background: #f8fafc;
+    font-size: 0.9rem;
+    resize: none;
+}
+
+textarea {
+    min-height: 80px;
+}
+
+.full-width {
+    grid-column: span 3;
+}
+
+.statusSelect {
+    display: none;
+}
+
+/* Buttons */
+.actionBtns {
+    grid-column: span 3;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+.editBtn,
+.saveBtn,
+.deleteBtn {
+    background: #0F497F;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: .9rem;
+    transition: 0.2s ease;
+}
+
+.editBtn:hover,
+.saveBtn:hover {
+    background: #082e54;
+}
+
+
+.hamburger {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 10px 14px;
+    background: #4C3575;
+    color: #fff;
+    border-radius: 8px;
+    width: fit-content;
+    margin-bottom: 15px;
+}
+
+/* Background Overlay */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(2px);
+    display: none;
+    z-index: 998;
+}
+
+/* Show overlay only when menu is open */
+#overlay.show {
+    display: block;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+
+    .ticketStructure {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .userStructure {
+        grid-template-columns: 1fr 1fr;
+        padding: 18px;
+    }
+
+    .sect-2 {
+        padding: 18px;
+    }
+}
+
+@media (max-width: 992px) {
+
+    /* Sidebar shrink */
+    .sect-1 {
+        width: 200px;
+        padding: 18px;
+    }
+
+    .sect-2 {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+
+    .ticketStructure {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width {
+        grid-column: span 1;
+    }
+
+    .actionBtns {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .hamburger {
+        display: block;
+    }
+
+    .sect-1 {
+        position: fixed;
+        top: 0;
+        left: -260px;
+        height: 100%;
+        width: 260px;
+        background: #4C3575;
+        transition: left 0.35s ease;
+        z-index: 999;
+    }
+
+    /* When Active → Slide In */
+    .sect-1.activeMenuSlide {
+        left: 0;
+    }
+
+    .sect-2 {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .loginForm,
+    .registerForm,
+    .createTicketForm {
+        width: 95%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    form input,
+    select {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .ticketStructure {
+        padding: 15px;
+    }
+
+    .field label {
+        font-size: 0.8rem;
+    }
+
+    .editBtn,
+    .saveBtn,
+    .deleteBtn {
+        padding: 7px 16px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .top-box {
+        font-size: 20px;
+        padding: 15px;
+    }
+
+    .userStructure {
+        padding: 14px;
+    }
+
+    .createTicketButton {
+        width: 100%;
+    }
 }
